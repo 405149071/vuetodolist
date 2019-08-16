@@ -9,6 +9,9 @@ import Todo from "./components/Todo.vue";
 import Life from "./components/Life.vue";
 import Header from "./components/Header.vue";
 import Header2 from "./components/Header2.vue";
+import User from "./components/User.vue";
+import UserAdd from "./components/User/UserAdd.vue";
+import UserList from "./components/User/UserList.vue";
 
 Vue.use(Router);
 
@@ -36,6 +39,20 @@ export default new Router({
       path: "/content/:nid",
       name: "content",
       component: Content
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: User,
+      children: [{
+        path: "useradd",
+        name: "useradd",
+        component: UserAdd
+      }, {
+        path: "userlist",
+        name: "userlist",
+        component: UserList
+      }]
     },
     {
       path: "/helloworld",

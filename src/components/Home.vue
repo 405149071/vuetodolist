@@ -6,7 +6,8 @@
     <header class="header">
       <router-link to="/home2">首页</router-link>|
       <router-link to="/news">新闻</router-link>|
-      <router-link to="/todo">日记</router-link>
+      <router-link to="/todo">日记</router-link>|
+      <router-link to="/user">用户</router-link>
     </header>
     <hr />
     <v-life v-if="lifeflg" />

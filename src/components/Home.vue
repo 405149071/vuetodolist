@@ -6,6 +6,8 @@
     <hr />
     <v-life v-if="lifeflg" />
     <hr />
+    <button @click="emitNews()">给news组件广播数据</button>
+    <hr />
     <button @click="run()">执行</button>
     <button @click="unlife()">卸载life</button>
     <button @click="getData()">resource请求数据</button>
@@ -21,6 +23,9 @@ import Header from "../components/Header";
 import Life from "../components/Life";
 // 引入axios , 哪里用哪里写，不能像vue-resource的全局使用，如果想全局使用必须单独配置，百度搜
 import Axios from "axios";
+
+// 引入广播实例
+import VueEvent from "../model/VueEvent";
 
 export default {
   data() {
@@ -38,7 +43,7 @@ export default {
   },
   methods: {
     run(data) {
-      alert("我是父组件的run" + data);
+      alert("我是首页父组件的run" + data);
     },
     unlife() {
       this.lifeflg = false;
@@ -64,6 +69,12 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    // 非父子组件通信
+    // 另组件监听广播，这个组件发送广播
+    // ， 需要一个新的VUE实例，vueevent，引入
+    emitNews() {
+      VueEvent.$emit("to-news", this.msg);
     }
   }
 };

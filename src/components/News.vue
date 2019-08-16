@@ -17,19 +17,28 @@
 // 2 this.$refs.header.msg // 数据
 // this.$refs.header.run() // 方法
 import Header2 from "../components/Header2";
+// 引入广播实例 (监听广播数据)
+import VueEvent from "../model/VueEvent";
 
 export default {
   data() {
     return {
-      msg: "我是父组件msg"
+      msg: "我是父组件msg",
+      title: "新闻"
     };
+  },
+  mounted() {
+    // 监听
+    VueEvent.$on("to-news", data => {
+      alert(data);
+    });
   },
   components: {
     "v-header2": Header2
   },
   methods: {
     run() {
-      alert("我是父组件的run");
+      alert("我是新闻父组件的run");
     },
     callsub() {
       alert(this.$refs.header2.msg); // 数据

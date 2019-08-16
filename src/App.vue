@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import storage from "./model/storage.js";
+console.log(storage, "1111");
 export default {
   name: "home",
   components: {
@@ -45,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    var list = JSON.parse(localStorage.getItem("list"));
+    var list = storage.get("list");
     if (list) {
       this.list = list;
     }
@@ -56,16 +58,16 @@ export default {
       if (e.keyCode == 13) {
         this.list.push({ title: this.todo.title, checked: false });
         this.todo.title = "";
-        localStorage.setItem("list", JSON.stringify(this.list));
+        storage.set("list", this.list);
       }
     },
     remove(index) {
       this.list.splice(index, 1);
-      localStorage.setItem("list", JSON.stringify(this.list));
+      storage.set("list", this.list);
     },
     done(index, isdone) {
       this.list[index].checked = isdone;
-      localStorage.setItem("list", JSON.stringify(this.list));
+      storage.set("list", this.list);
     },
     getlist() {
       console.log(this.list);

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <v-home />
+    <!-- <v-home />
     <Home />
     <hr />
     <v-news />
-    <hr />
+    <hr />-->
     <!-- <Todo /> -->
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
-    <router-view />-->
+    </div>-->
+    <router-view />
     <h2>我是根组件</h2>
   </div>
 </template>

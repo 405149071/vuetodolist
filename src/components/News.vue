@@ -4,7 +4,7 @@
     <h2>这是新闻页面</h2>
     <ul>
       <li v-for="(item,key) in list">
-        <router-link :to="'/content/'+ key +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
+        <router-link :to="'/content/'+ item.aid +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
       </li>
     </ul>
     <button @click="callsub()">调用子组件数据和方法</button>
@@ -26,9 +26,9 @@ export default {
       msg: "我是父组件msg",
       title: "新闻",
       list: [
-        { id: 1, title: "地铁啊" },
-        { id: 2, title: "天安门" },
-        { id: 3, title: "老张" }
+        // { id: 1, title: "地铁啊" },
+        // { id: 2, title: "天安门" },
+        // { id: 3, title: "老张" }
       ]
     };
   },
@@ -37,6 +37,8 @@ export default {
     VueEvent.$on("to-news", data => {
       alert(data);
     });
+    // 请求数据
+    this.getnews();
   },
   components: {
     "v-header2": Header2
@@ -48,6 +50,20 @@ export default {
     callsub() {
       alert(this.$refs.header2.msg); // 数据
       this.$refs.header2.run();
+    },
+    getnews() {
+      var api =
+        "http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+      // jsonp, 服务端要支持jsonp
+      this.$http.jsonp(api).then(
+        res => {
+          // console.log(res);
+          this.list = res.body.result;
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 };

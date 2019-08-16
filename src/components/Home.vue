@@ -16,6 +16,7 @@
     <button @click="run()">执行</button>
     <button @click="unlife()">卸载life</button>
     <button @click="getData()">resource请求数据</button>
+    <button @click="goNews()">js跳转页面</button>
     <ul>
       <li v-for="item in list">{{item.title}}</li>
     </ul>
@@ -80,6 +81,13 @@ export default {
     // ， 需要一个新的VUE实例，vueevent，引入
     emitNews() {
       VueEvent.$emit("to-news", this.msg);
+    },
+    goNews() {
+      // 一种方式 使用路由
+      // this.$router.push("/news");
+      // 也支持动态路由和传参数
+      // 另外一种方式,使用name，name需要在route.js里定义
+      this.$router.push({ name: "news" });
     }
   }
 };

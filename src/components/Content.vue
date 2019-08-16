@@ -13,7 +13,9 @@ export default {
   },
   mounted() {
     // 接收动态路由的参数
-    console.log(this.$route.params);
+    console.log("动态路由参数", this.$route.params);
+    // 接收get参数
+    console.log("get参数", this.$route.query);
   }
 };
 </script>

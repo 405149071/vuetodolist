@@ -4,7 +4,7 @@
     <h2>这是新闻页面</h2>
     <ul>
       <li v-for="(item,key) in list">
-        <router-link :to="'/content/'+ key ">{{key}}---{{item.title}}</router-link>
+        <router-link :to="'/content/'+ key +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
       </li>
     </ul>
     <button @click="callsub()">调用子组件数据和方法</button>

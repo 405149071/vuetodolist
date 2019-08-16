@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <v-home />
+    <Home />
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -33,10 +35,15 @@
 
 <script>
 import storage from "./model/storage.js";
-console.log(storage, "1111");
+// console.log(storage, "1111");
+//挂在home
+import Home from "./components/Home";
+
 export default {
   name: "home",
   components: {
+    "v-home": Home, // 1,给组件起名字
+    Home //组件
     // HelloWorld
   },
   data() {

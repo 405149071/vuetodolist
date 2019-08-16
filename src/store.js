@@ -7,6 +7,11 @@ export default new Vuex.Store({
   state: {
     count: 0
   },
+  getters: {
+    computCount: (state) => {
+      return state.count * 2;
+    }
+  }, // 改变state里的值的时候会触发这里面的方法，获取相关的值
   mutations: {
     incc() {
       this.state.count++;
@@ -15,5 +20,9 @@ export default new Vuex.Store({
       this.state.count--;
     }
   },
-  actions: {}
+  actions: {
+    incMutation(context) {
+      context.commit("incc")
+    }
+  }
 });

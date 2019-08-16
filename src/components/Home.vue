@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2>这是首页--{{msg}}--state:{{this.$store.state.count}}</h2>
+    <h2>
+      这是首页--{{msg}}--state:{{this.$store.state.count}}
+      --computedCount:{{this.$store.getters.computCount}}
+    </h2>
     <v-header :title="title" :msg="msg" :run="run" :home="this" />
     <br />
     <header class="header">
@@ -101,8 +104,10 @@ export default {
       this.$router.push({ name: "news" });
     },
     incCount() {
-      // 改变vuex数据
+      // 改变vuex数据  触发mutation的方法
       this.$store.commit("incc");
+      // 改变vuex数据  触发action里的方法
+      this.$store.dispatch("incMutation");
     }
   }
 };

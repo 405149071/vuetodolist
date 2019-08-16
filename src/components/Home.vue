@@ -18,6 +18,9 @@
     <button @click="unlife()">卸载life</button>
     <button @click="getData()">resource请求数据</button>
     <button @click="goNews()">js跳转页面</button>
+    <br />
+    <mt-button type="default">default</mt-button>
+    <mt-button type="primary">primary</mt-button>
     <ul>
       <li v-for="item in list">{{item.title}}</li>
     </ul>

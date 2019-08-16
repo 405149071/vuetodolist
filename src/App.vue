@@ -44,19 +44,28 @@ export default {
       //[{ title: "aaaa", checked: true }, { title: "bbbb", checked: false }]
     };
   },
+  mounted() {
+    var list = JSON.parse(localStorage.getItem("list"));
+    if (list) {
+      this.list = list;
+    }
+  },
   methods: {
     add(e) {
       // console.log(e.keyCode);
       if (e.keyCode == 13) {
         this.list.push({ title: this.todo.title, checked: false });
         this.todo.title = "";
+        localStorage.setItem("list", JSON.stringify(this.list));
       }
     },
     remove(index) {
       this.list.splice(index, 1);
+      localStorage.setItem("list", JSON.stringify(this.list));
     },
     done(index, isdone) {
       this.list[index].checked = isdone;
+      localStorage.setItem("list", JSON.stringify(this.list));
     },
     getlist() {
       console.log(this.list);

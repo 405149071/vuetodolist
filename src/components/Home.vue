@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>这是首页--{{msg}}</h2>
-    <v-header />
+    <v-header :title="title" :msg="msg" :run="run" :home="this" />
     <br />
     <hr />
     <v-life v-if="lifeflg" />
@@ -27,7 +27,9 @@ export default {
     return {
       msg: "这是首页",
       lifeflg: true,
-      list: []
+      list: [],
+      // 传给子组件的内容
+      title: "首页"
     };
   },
   components: {
@@ -35,8 +37,8 @@ export default {
     "v-life": Life
   },
   methods: {
-    run() {
-      alert(this.msg);
+    run(data) {
+      alert("我是父组件的run" + data);
     },
     unlife() {
       this.lifeflg = false;

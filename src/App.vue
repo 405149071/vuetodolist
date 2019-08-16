@@ -2,6 +2,9 @@
   <div id="app">
     <v-home />
     <Home />
+    <hr />
+    <v-news />
+    <hr />
     <!-- <Todo /> -->
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -18,6 +21,7 @@ import storage from "./model/storage.js";
 //挂在home
 import Home from "./components/Home";
 import Todo from "./components/Todo";
+import News from "./components/News";
 
 export default {
   name: "home",
@@ -25,7 +29,8 @@ export default {
     "v-home": Home, // 1,给组件起名字
     Home, //组件
     // HelloWorld,
-    Todo
+    Todo,
+    "v-news": News
   }
 };
 </script>

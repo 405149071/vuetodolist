@@ -8,6 +8,10 @@
     <hr />
     <button @click="run()">执行</button>
     <button @click="unlife()">卸载life</button>
+    <button @click="getData()">resource请求数据</button>
+    <ul>
+      <li v-for="item in list">{{item.title}}</li>
+    </ul>
   </div>
 </template>
 
@@ -20,7 +24,8 @@ export default {
   data() {
     return {
       msg: "这是首页",
-      lifeflg: true
+      lifeflg: true,
+      list: []
     };
   },
   components: {
@@ -33,6 +38,18 @@ export default {
     },
     unlife() {
       this.lifeflg = false;
+    },
+    getData() {
+      var api = "http://www.phonegap100.com/appapi.php?a=getPortalList&catid=1";
+      this.$http.get(api).then(
+        res => {
+          console.log(res);
+          this.list = res.body.result;
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 };

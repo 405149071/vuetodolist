@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-header2 ref="header2" />
-    <h2>这是新闻页面</h2>
+    <h2>这是新闻页面--state:{{this.$store.state.count}}</h2>
     <!-- <ul class="list">
       <li v-for="(item,key) in list">
         <router-link :to="'/content/'+ item.aid +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
@@ -16,6 +16,7 @@
     </ul>
 
     <button @click="callsub()">调用子组件数据和方法</button>
+    <button @click="decc()">改变state值</button>
   </div>
 </template>
 
@@ -86,6 +87,9 @@ export default {
     },
     loadMore() {
       this.getnews();
+    },
+    decc() {
+      this.$store.commit("decc");
     }
   }
 };

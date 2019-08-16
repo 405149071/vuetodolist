@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>这是首页--{{msg}}</h2>
+    <h2>这是首页--{{msg}}--state:{{this.$store.state.count}}</h2>
     <v-header :title="title" :msg="msg" :run="run" :home="this" />
     <br />
     <header class="header">
@@ -18,6 +18,7 @@
     <button @click="unlife()">卸载life</button>
     <button @click="getData()">resource请求数据</button>
     <button @click="goNews()">js跳转页面</button>
+    <button @click="incCount()">改变state数据</button>
     <br />mt按钮
     <mt-button type="default">default</mt-button>
     <mt-button type="primary">primary</mt-button>el按钮
@@ -39,6 +40,9 @@ import Axios from "axios";
 // 引入广播实例
 import VueEvent from "../model/VueEvent";
 
+// 引入store, 不引入好像也没问题
+// import store from "../store";
+
 export default {
   data() {
     return {
@@ -49,6 +53,7 @@ export default {
       title: "首页"
     };
   },
+  // store, // 使用store数据，不引入好像也没问题
   components: {
     "v-header": Header,
     "v-life": Life
@@ -94,6 +99,10 @@ export default {
       // 也支持动态路由和传参数
       // 另外一种方式,使用name，name需要在route.js里定义
       this.$router.push({ name: "news" });
+    },
+    incCount() {
+      // 改变vuex数据
+      this.$store.commit("incc");
     }
   }
 };

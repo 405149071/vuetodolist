@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Home2 from "./components/Home.vue";
 import News from "./components/News.vue";
+import Content from "./components/Content.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Todo from "./components/Todo.vue";
 import Life from "./components/Life.vue";
@@ -30,6 +31,11 @@ export default new Router({
       path: "/news",
       name: "news",
       component: News
+    },
+    {
+      path: "/content/:nid",
+      name: "content",
+      component: Content
     },
     {
       path: "/helloworld",

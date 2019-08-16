@@ -3,9 +3,9 @@
     <v-header2 ref="header2" />
     <h2>这是新闻页面</h2>
     <ul>
-      <li>1111111</li>
-      <li>2222</li>
-      <li>3333</li>
+      <li v-for="(item,key) in list">
+        <router-link :to="'/content/'+ key ">{{key}}---{{item.title}}</router-link>
+      </li>
     </ul>
     <button @click="callsub()">调用子组件数据和方法</button>
   </div>
@@ -24,7 +24,12 @@ export default {
   data() {
     return {
       msg: "我是父组件msg",
-      title: "新闻"
+      title: "新闻",
+      list: [
+        { id: 1, title: "地铁啊" },
+        { id: 2, title: "天安门" },
+        { id: 3, title: "老张" }
+      ]
     };
   },
   mounted() {

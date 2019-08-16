@@ -2,7 +2,7 @@
   <div>
     <v-header2 ref="header2" />
     <h2>这是新闻页面</h2>
-    <ul>
+    <ul class="list">
       <li v-for="(item,key) in list">
         <router-link :to="'/content/'+ item.aid +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
       </li>
@@ -68,3 +68,17 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+.list {
+  li {
+    height: 3.4rem;
+    line-height: 3.4rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+    a {
+      color: #666;
+    }
+  }
+}
+</style>

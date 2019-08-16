@@ -41,3 +41,13 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+#content {
+  padding: 1rem;
+  line-height: 2;
+  img {
+    max-width: 100%;
+  }
+}
+</style>

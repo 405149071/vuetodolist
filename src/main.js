@@ -10,6 +10,9 @@ Vue.config.productionTip = false;
 
 Vue.use(VueResource)
 
+// 引入公共css
+import "./assets/basic.css"
+
 new Vue({
   router,
   store,

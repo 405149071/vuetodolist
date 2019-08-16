@@ -5,16 +5,29 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />-->
-    <input type="text" v-model="todo" />
-    <button @click="add">+增加</button>
+    <input type="text" v-model="todo.title" @keypress="add" />
+    <!-- <button @click="add">+增加</button> -->
     <br />
     <hr />
     <ul>
-      <li v-for="(item,key) in list">
-        {{key}}--{{item}} -------
+      运行中
+      <li v-for="(item,key) in list" v-if="!item.checked">
+        <input type="checkbox" @click="done(key,true)" v-model="item.checked" />
+        {{key}}--{{item.title}} -------
         <button @click="remove(key)">删除</button>
       </li>
     </ul>
+
+    <hr />
+    <ul>
+      运行完
+      <li v-for="(item,key) in list" v-if="item.checked">
+        <input type="checkbox" @click="done(key,false)" v-model="item.checked" />
+        {{key}}--{{item.title}} -------
+        <button @click="remove(key)">删除</button>
+      </li>
+    </ul>
+    <button @click="getlist()">获取list的值</button>
   </div>
 </template>
 
@@ -26,17 +39,27 @@ export default {
   },
   data() {
     return {
-      todo: "",
+      todo: { title: "", checked: false },
       list: []
+      //[{ title: "aaaa", checked: true }, { title: "bbbb", checked: false }]
     };
   },
   methods: {
-    add() {
-      this.list.push(this.todo);
-      this.todo = "";
+    add(e) {
+      // console.log(e.keyCode);
+      if (e.keyCode == 13) {
+        this.list.push({ title: this.todo.title, checked: false });
+        this.todo.title = "";
+      }
     },
     remove(index) {
       this.list.splice(index, 1);
+    },
+    done(index, isdone) {
+      this.list[index].checked = isdone;
+    },
+    getlist() {
+      console.log(this.list);
     }
   }
 };

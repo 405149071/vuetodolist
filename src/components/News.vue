@@ -2,11 +2,19 @@
   <div>
     <v-header2 ref="header2" />
     <h2>这是新闻页面</h2>
-    <ul class="list">
+    <!-- <ul class="list">
       <li v-for="(item,key) in list">
         <router-link :to="'/content/'+ item.aid +'?cc=888&index='+ key ">{{key}}---{{item.title}}</router-link>
       </li>
+    </ul>-->
+    <ul
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="10"
+    >
+      <li v-for="item in list">{{ item.title }}</li>
     </ul>
+
     <button @click="callsub()">调用子组件数据和方法</button>
   </div>
 </template>
@@ -29,7 +37,9 @@ export default {
         // { id: 1, title: "地铁啊" },
         // { id: 2, title: "天安门" },
         // { id: 3, title: "老张" }
-      ]
+      ],
+      page: 1,
+      loading: false
     };
   },
   mounted() {
@@ -52,18 +62,30 @@ export default {
       this.$refs.header2.run();
     },
     getnews() {
+      this.loading = true; // 请求数据的开关
       var api =
-        "http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+        "http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=" +
+        this.page;
       // jsonp, 服务端要支持jsonp
       this.$http.jsonp(api).then(
         res => {
           // console.log(res);
-          this.list = res.body.result;
+          // this.list = res.body.result;
+          this.list = this.list.concat(res.body.result);
+          this.page = this.page + 1;
+          if (res.body.result.length < 20) {
+            this.loading = true; // 终止查询
+          } else {
+            this.loading = false;
+          }
         },
         err => {
           console.log(err);
         }
       );
+    },
+    loadMore() {
+      this.getnews();
     }
   }
 };

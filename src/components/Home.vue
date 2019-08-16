@@ -19,6 +19,8 @@
 import Header from "../components/Header";
 // 引入生命周期演示vue
 import Life from "../components/Life";
+// 引入axios , 哪里用哪里写，不能像vue-resource的全局使用，如果想全局使用必须单独配置，百度搜
+import Axios from "axios";
 
 export default {
   data() {
@@ -41,15 +43,25 @@ export default {
     },
     getData() {
       var api = "http://www.phonegap100.com/appapi.php?a=getPortalList&catid=1";
-      this.$http.get(api).then(
-        res => {
+      // vue-resource
+      // this.$http.get(api).then(
+      //   res => {
+      //     console.log(res);
+      //     this.list = res.body.result;
+      //   },
+      //   err => {
+      //     console.log(err);
+      //   }
+      // );
+      // axios
+      Axios.get(api)
+        .then(res => {
           console.log(res);
-          this.list = res.body.result;
-        },
-        err => {
+          this.list = res.data.result;
+        })
+        .catch(err => {
           console.log(err);
-        }
-      );
+        });
     }
   }
 };
